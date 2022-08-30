@@ -15,6 +15,8 @@ try:
 
     PruebaGrafica(nums)
 
+
+
 except (ValueError):
     print("Error tipo: ", sys.exc_info()[0])
     print("digite valores correctos")
