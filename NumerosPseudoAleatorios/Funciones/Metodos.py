@@ -115,7 +115,69 @@ def MetodoLineal(semilla,k,g,c,repeticiones):
 
     return numerosPseudo
 
-MetodoLineal(6,3,3,7,10)
+def MetodoAditivo(lista, m,n):
+    contador=0
+    listari =[]
+    if ((m) >= 0 and (n) > 0):
+        for i in range(0,n+1):
+
+            # sacar primer numero de la lista
+            primerelemento = lista[contador]
+            # sacar el ultimo elemento de la lista
+            ultimo = lista[len(lista)-1]
+            # sumatoria de la x final y la x del comienzo
+            auxsumatoria= ultimo + primerelemento
+            # sacamos el resultado de la nueva semilla con el modulo
+            modulo = auxsumatoria % m
+            lista.append(modulo)
+
+            ri= (modulo / (m-1))
+            listari.append(ri)
+
+
+            contador+=1
+
+        return listari
+    else:
+        print("no se pueden ingresar valores inferiores a 0")
+        
+def MetodoCongruencialCuadratico(a,b,c,m,numerosrecorridas, semilla):
+    if(((a % 2) == 0) and ((c % 2) != 0) and ((a % 2) == 0)):
+        lista =[]
+        for i in range (numerosrecorridas):
+            aux = semilla
+            # xi+1
+            x=((a*semilla**2) + (b* semilla) + c ) % m
+            lista.append(x)
+
+            semilla = x
+    else:
+        print("debe tener encuenta las normas")
+    return lista
+
+def MetdoCongruencialMultiplicativo(x0,k,g):
+    m = 2 ** g
+    a = 5 + (8 * k)
+    numerosPseudo = []
+    numeroderandom = int(input("Ingrese cuantos numeros pseudoaleatorios desea: "))
+    if ((x0) >= 0 and (k) >= 0 and  (g)>=0):
+        for i in range(numeroderandom):
+            semilla= x0
+            #se realiza la parte de a*xi
+            aux= a * semilla
+            # se realiza el modulo del anterior
+            auxmodulo = aux % m
+            # el ri
+            ri= (auxmodulo / (m-1))
+            print(f'X{i}={a}*{semilla}mod({m})={auxmodulo} , R{i}={ri}')
+            numerosPseudo.append(ri)
+            # cambiamos la semilla
+            x0 = auxmodulo
+    else:
+        print("no se pueden ingresar valores inferiores a 0")
+
+
+    return numerosPseudo
 
 
 
